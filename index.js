@@ -1,10 +1,8 @@
 import inquirer from 'inquirer';
-
-let todoList: string[] = [];
-let loop: boolean = true;
-
+let todoList = [];
+let loop = true;
 while (loop) {
-    const answers: { TODO: string, addmore: boolean } = await inquirer.prompt([
+    const answers = await inquirer.prompt([
         {
             type: 'input',
             name: 'TODO',
@@ -15,23 +13,22 @@ while (loop) {
             name: 'addmore',
             message: 'Do you want to add more todo? ',
             default: false
-
         }
-    ])
+    ]);
     const { TODO, addmore } = answers;
     loop = addmore;
     if (TODO) {
         todoList.push(TODO);
-    } else {
+    }
+    else {
         console.log("Enter Valid Input");
     }
 }
-
 if (todoList.length > 0) {
     console.log("Your Todo List:");
     todoList.map((eachItem) => {
         console.log(eachItem);
-    })
+    });
 }
 else {
     console.log('No Data Found');
